@@ -158,6 +158,9 @@
 /* Use builtin getopt */
 #cmakedefine SC_PROVIDE_GETOPT 1
 
+/* Define to 1 if MPI >2.2 is requested */
+#cmakedefine SC_MPI_VERSION_GREATER_2_2 1
+
 /* Linker flags */
 #ifndef SC_LDFLAGS
 #define SC_LDFLAGS @SC_LDFLAGS@

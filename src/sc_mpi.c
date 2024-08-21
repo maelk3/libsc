@@ -820,6 +820,13 @@ sc_mpi_sizeof (sc_MPI_Datatype t)
   if (t == sc_MPI_DOUBLE_INT)
     return sizeof (double) + sizeof (int);
 
+#ifdef SC_MPI_VERSION_GREATER_2_2
+  if (t == sc_MPI_INT8_T)
+    return 1;
+  if (t == sc_MPI_UNSIGNED_LONG_LONG)
+    return sizeof (long long);
+#endif
+
   SC_ABORT_NOT_REACHED ();
 }
 

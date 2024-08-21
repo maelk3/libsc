@@ -8,6 +8,15 @@ option( SC_BUILD_SHARED_LIBS "build shared libsc" OFF )
 option( SC_BUILD_TESTING "build libsc self-tests" ON )
 option( SC_TEST_WITH_VALGRIND "run self-tests with valgrind" OFF )
 
+set( SC_MPI_VERSION "legacy" CACHE STRING "Select the MPI standard that SC should export" )
+set_property( CACHE SC_MPI_VERSION PROPERTY STRINGS "legacy" ">2.2" )
+
+get_property( SC_MPI_VERSION_OPTIONS CACHE SC_MPI_VERSION PROPERTY STRINGS )
+if( NOT SC_MPI_VERSION IN_LIST SC_MPI_VERSION_OPTIONS )
+  string( REPLACE ";"  "\", \"" SC_MPI_VERSION_OPTIONS_STR "${SC_MPI_VERSION_OPTIONS}" )
+  message( FATAL_ERROR "Wrong value for option \"SC_MPI_VERSION\"\
+, supported values are \"${SC_MPI_VERSION_OPTIONS_STR}\" but ${SC_MPI_VERSION} was given." )
+endif()
 
 set_property(DIRECTORY PROPERTY EP_UPDATE_DISCONNECTED true)
 

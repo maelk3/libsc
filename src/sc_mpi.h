@@ -202,6 +202,11 @@ sc_MPI_IO_Errorcode_t;
 #define sc_MPI_DOUBLE_INT          MPI_DOUBLE_INT
 #define sc_MPI_PACKED              MPI_PACKED
 
+#ifdef SC_MPI_VERSION_GREATER_2_2
+#define sc_MPI_UNSIGNED_LONG_LONG  MPI_UNSIGNED_LONG_LONG
+#define sc_MPI_INT8_T              MPI_INT8_T
+#endif
+
 #define sc_MPI_OP_NULL             MPI_OP_NULL
 #define sc_MPI_MAX                 MPI_MAX
 #define sc_MPI_MIN                 MPI_MIN
@@ -369,6 +374,11 @@ sc_MPI_IO_Errorcode_t;
 #define sc_MPI_DOUBLE_INT          SC3_MPI_DOUBLE_INT
 #define sc_MPI_LONG_DOUBLE         ((sc_MPI_Datatype) 0x4c000c0c)
 #define sc_MPI_PACKED              ((sc_MPI_Datatype) 0x4c001001)
+
+#ifdef SC_MPI_VERSION_GREATER_2_2
+#define sc_MPI_INT8_T              ((sc_MPI_Datatype) 0x4c000202)
+#define sc_MPI_UNSIGNED_LONG_LONG  ((sc_MPI_Datatype) 0x4c000409)
+#endif
 
 #define sc_MPI_OP_NULL             SC3_MPI_OP_NULL
 #define sc_MPI_MINLOC              SC3_MPI_MINLOC

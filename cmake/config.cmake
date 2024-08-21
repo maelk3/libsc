@@ -15,6 +15,10 @@ message(STATUS "libsc SOVERSION configured as ${SC_SOVERSION}")
 
 if( SC_ENABLE_MPI )
   find_package(MPI COMPONENTS C REQUIRED)
+
+  if( SC_MPI_VERSION STREQUAL ">2.2" AND MPI_C_VERSION VERSION_LESS "2.2" )
+    message(FATAL_ERROR "MPI standard 2.2 was requested but the MPI found only provides version ${MPI_C_VERSION}.")
+  endif()
 endif()
 
 if( SC_USE_INTERNAL_ZLIB )
@@ -213,6 +217,10 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
   set(SC_ENABLE_DEBUG 1)
 else()
   set(SC_ENABLE_DEBUG 0)
+endif()
+
+if ( SC_MPI_VERSION STREQUAL ">2.2" )
+  set(SC_MPI_VERSION_GREATER_2_2 1)
 endif()
 
 configure_file(${CMAKE_CURRENT_LIST_DIR}/sc_config.h.in ${PROJECT_BINARY_DIR}/include/sc_config.h)
